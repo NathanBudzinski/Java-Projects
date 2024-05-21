@@ -44,6 +44,7 @@ public class VectorGraphics extends JComponent
             }
         }
 
+        // Written by Nathan B
         public Point subtract(Point Q)//override the inherited Matrix methods for speed
         {
             Point diff = new Point(x() - Q.x(), y() - Q.y(), z() - Q.z());
@@ -56,6 +57,7 @@ public class VectorGraphics extends JComponent
             return sum;
         }
 
+        // Written by Nathan B
         public Point multiply(double scalar)
         {
             Point multiple = new Point(scalar * x(), scalar * y(), scalar * z());
@@ -423,13 +425,14 @@ public class VectorGraphics extends JComponent
 
 
 
-
+        // Written by Nathan B
         public boolean contains(Point P)
         {
             //Take advantage of the fact that our houses are convex (not counting the chimney!)
             return inHouse(P) || inChimney(P);
         }
-        
+
+        // Written by Nathan B
         private boolean inHouse(Point P)
         {
             for (Plane plane : houseBoundaryPlanes)
@@ -438,6 +441,8 @@ public class VectorGraphics extends JComponent
             }
             return true;
         }
+
+        // Written by Nathan B
         private boolean inChimney(Point P)
         {
             for (Plane plane : chimneyBoundaryPlanes)
@@ -542,6 +547,7 @@ public class VectorGraphics extends JComponent
         return r;
     }
 
+    // Written by Nathan B
     private Point findIntersectionPoint(LineSegment seg, Plane plane)
     {
         //seg: x = x0 + t*vx, y = y0 + t*vy, z = z0 + t*vz
@@ -556,6 +562,7 @@ public class VectorGraphics extends JComponent
         return intersection;
     }
 
+    // Written by Nathan B
     private boolean onSameSide(Plane plane, Point A, Point B)//returns true iff A and B are on the same side of the plane
     {
         double dotA = DotProduct(plane.normalVector, A);
@@ -564,6 +571,7 @@ public class VectorGraphics extends JComponent
         return Math.signum(dotA - threshold) == Math.signum(dotB - threshold);
     }
 
+    // Written by Nathan B
     private boolean clipLineSegment(LineSegment seg)
     {
         Plane cutoff = new Plane();
@@ -580,11 +588,13 @@ public class VectorGraphics extends JComponent
         return true;
     }
 
+    // Written by Nathan B
     private double DotProduct(Point v, Point w)
     {
         return v.x() * w.x() + v.y() * w.y() + v.z() * w.z();
     }
 
+    // Written by Nathan B
     private Point CrossProduct(Point v, Point w)
     {
         Point r = new Point(v.y() * w.z() - v.z() * w.y(), - v.x() * w.z() + v.z() * w.x(), v.x() * w.y() - v.y() * w.x());
@@ -602,6 +612,7 @@ public class VectorGraphics extends JComponent
         eye = eye.subtract(kHat.multiply(eyeToViewportDistance));
     }
 
+    // Written by Nathan B
     private Point rotate(Point vector, double amount)
     {
         //rotate vector by the given amount of radians about the x-axis
@@ -649,6 +660,7 @@ public class VectorGraphics extends JComponent
         //Compute the inverse of f: it is just the same as the transpose
         RotationMatrix fInverse = new RotationMatrix(f.transpose());
 
+        // Written by Nathan B
         //Do the work: compute result = f * rotate(result, amount) * fInverse, and return result
         result = fInverse.multiply(vector);
         result = rotate(result, amount);
@@ -656,6 +668,7 @@ public class VectorGraphics extends JComponent
         return result;
     }
 
+    // Written by Nathan B
     private Point rotate(Point vector, double amount, LineSegment axis)
     {
         //rotate vector by the given amount of radians about the given axis
