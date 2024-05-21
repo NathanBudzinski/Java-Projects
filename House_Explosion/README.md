@@ -4,7 +4,7 @@
 
 ### Code Attribution: 
 
-All code written by me has a comment above notating that it was written by me. 
+All code written by me is in VectorGraphics.java and has a comment above notating my work. All other code was written by my course instructor Steven J Rosenberg.
 
 ### Controls: 
 
